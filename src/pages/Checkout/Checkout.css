@@ -1,0 +1,33 @@
+.ghe {
+  /* Ghế Thường */
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  background-color: rgb(123, 123, 123);
+}
+
+.gheDaDat {
+  /* Ghế Đã Đặt */
+  background-color: rgb(147, 211, 18);
+  cursor: no-drop;
+}
+
+.gheVip {
+  background-color: rgb(228, 74, 8);
+}
+
+.gheDangDat {
+  background-color: rgb(22, 39, 145);
+}
+
+.gheDaDuocDat {
+  /* Ghế đã được mình đặt */
+  background-color: rgb(246, 246, 246);
+  box-shadow: (-1px 2px 18px -6px rgb(147, 145, 145));
+  color: orange;
+  border: 1px solid black;
+}
