@@ -27,7 +27,7 @@ function Checkout(props) {
     (state) => state.QuanLyDatVeReducer
   );
 
-  console.log(thongTinTaiKhoan);
+  console.log(chiTietPhongVe);
 
   const params = useParams();
   const dispatch = useDispatch();

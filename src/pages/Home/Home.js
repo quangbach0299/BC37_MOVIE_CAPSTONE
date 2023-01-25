@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
-import { Pagination } from "antd";
+import { Button, Pagination } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import Film_Flip from "../../components/Film/Film_Flip";
 import { getMoviePageListAction } from "../../redux/actions/QuanLyPhimAction";
@@ -34,8 +35,8 @@ export const Home = () => {
         <div className="mt-20">
           {arrFilm.items && (
             <Pagination
-              current={arrFilm.currentPage}
-              pageSize={arrFilm.count}
+              defaultCurrent={arrFilm.currentPage}
+              pageSize={8}
               total={arrFilm.totalCount}
               onChange={(e) => {
                 dispatch(getMoviePageListAction(e));
@@ -43,7 +44,10 @@ export const Home = () => {
             />
           )}
         </div>
-
+        <br />
+        <NavLink to="/admin/films">
+          <Button>Admin</Button>
+        </NavLink>
         {/* Sử dụng Hook để ngăn ko render */}
         <HomeMenu heThongRapChieu={heThongRapChieu}></HomeMenu>
       </div>

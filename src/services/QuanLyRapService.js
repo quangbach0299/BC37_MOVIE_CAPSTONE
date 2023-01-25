@@ -7,9 +7,19 @@ export class QuanLyRapService extends baseService {
     super();
   }
 
-  layDanhSachRap = () => {
+  layThongTinLichChieuHeThongRap = () => {
     return this.get(
       `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUPID}`
+    );
+  };
+
+  layThongTinRapTheoHeTHong = () => {
+    return this.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
+  };
+
+  layThongTinCumRapTheoHeThong = (maHeThongRap) => {
+    return this.get(
+      `/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`
     );
   };
 }

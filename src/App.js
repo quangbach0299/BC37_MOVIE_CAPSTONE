@@ -15,15 +15,18 @@ import { useEffect } from "react";
 import { fetchProfileAction } from "./redux/actions/QuanLyNguoiDungAction";
 import Loading from "./components/Loading/Loading";
 import { Register } from "./pages/Register/Register";
-import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Films from "./pages/Admin/Films/Films";
 import ShowTime from "./pages/Admin/ShowTime/ShowTime";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import AddNew from "./pages/Admin/Films/AddNew/AddNew";
+import Edit from "./pages/Admin/Films/Edit.js/Edit";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProfileAction);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -36,7 +39,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="news" element={<News />} />
             <Route path="detail/:id" element={<Detail />}></Route>
-            <Route path="*" element={<Navigate to={""} />} />
+            <Route path="*" element={<Navigate to="" />} />
             {/* Dùng để chuyển kí tự lung tung về home */}
           </Route>
           <Route path="checkout/:maLichChieu" element={<CheckoutTemplate />}>
@@ -49,7 +52,9 @@ function App() {
           <Route path="admin" element={<AdminTemplate />}>
             <Route path="" element={<Dashboard />} />
             <Route path="films" element={<Films />} />
-            <Route path="showtime" element={<ShowTime />} />
+            <Route path="films/addnew" element={<AddNew />} />
+            <Route path="films/edit/:id" element={<Edit />} />
+            <Route path="films/showtime/:id" element={<ShowTime />} />
           </Route>
         </Routes>
       </BrowserRouter>

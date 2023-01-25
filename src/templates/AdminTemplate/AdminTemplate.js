@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FileOutlined,
   PieChartOutlined,
   UserOutlined,
-  DesktopOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getMoviePageListAction } from "../../redux/actions/QuanLyPhimAction";
+import { Link, Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -18,26 +20,33 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
+
 const items = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
+  getItem(<Link to="/admin">Users</Link>, "1", <PieChartOutlined />),
+  getItem("FilmManager", "sub1", <UserOutlined />, [
+    getItem(<Link to="/admin/films">Films</Link>, "2"),
+    getItem(<Link to="/admin/films/addnew">Add New</Link>, "3"),
+    // getItem(<Link to="/admin/films/edit">Edit</Link>, "4"),
   ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
+  // getItem("Team", "sub2", <TeamOutlined />, [
+  //   getItem("Team 1", "5"),
+  //   getItem("Team 2", "6"),
+  // ]),
+  // getItem("Files", "7", <FileOutlined />),
 ];
 
 export default function AdminTemplate() {
   const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMoviePageListAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout
@@ -52,17 +61,20 @@ export default function AdminTemplate() {
       >
         <div
           style={{
-            height: 32,
+            height: 50,
             margin: 16,
-            background: "rgba(255, 255, 255, 0.2)",
+            backgroundImage: `url("https://login.cyberlearn.vn/static/media/logo.0f405a3b.png")`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
-        />
+        ></div>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
           items={items}
-        />
+        ></Menu>
       </Sider>
       <Layout className="site-layout">
         <Header
@@ -81,8 +93,8 @@ export default function AdminTemplate() {
               margin: "16px 0",
             }}
           >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            {/* <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
           </Breadcrumb>
           <div
             style={{
@@ -99,7 +111,7 @@ export default function AdminTemplate() {
             textAlign: "center",
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          CyberSoftAdmin ©2023 Created by Quang Bach
         </Footer>
       </Layout>
     </Layout>
