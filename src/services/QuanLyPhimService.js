@@ -47,6 +47,10 @@ export class QuanLyPhimService extends baseService {
   xoaPhim = (maPhim) => {
     return this.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`);
   };
+
+  taoLichChieuPhim = (dataSubmit) => {
+    return this.post(`/api/QuanLyDatVe/TaoLichChieu`, dataSubmit);
+  };
 }
 
 export const quanLyPhimService = new QuanLyPhimService();

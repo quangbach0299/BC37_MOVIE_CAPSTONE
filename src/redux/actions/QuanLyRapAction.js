@@ -36,10 +36,12 @@ export const getCineInfoListSystemAction = () => {
   };
 };
 
-export const getCineClusterInfoListSystemAction = () => {
+export const getCineClusterInfoListSystemAction = (maHeThongRap) => {
   return async (dispatch) => {
     try {
-      const result = await quanLyRapService.layThongTinCumRapTheoHeThong();
+      const result = await quanLyRapService.layThongTinCumRapTheoHeThong(
+        maHeThongRap
+      );
       // console.log(result.data.content);
 
       dispatch({

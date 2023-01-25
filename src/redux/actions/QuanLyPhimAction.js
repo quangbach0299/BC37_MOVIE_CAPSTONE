@@ -104,3 +104,14 @@ export const deleteMovieAction = (maPhim) => {
     }
   };
 };
+
+export const postSchedulerMovieAction = (dataSubmit) => {
+  return async (dispatch) => {
+    try {
+      let result = await quanLyPhimService.taoLichChieuPhim(dataSubmit);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
